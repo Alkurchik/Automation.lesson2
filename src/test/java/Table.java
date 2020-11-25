@@ -26,7 +26,6 @@ public class Table {
         MainTable mainTable = new MainTable(tableElement, driver);
         System.out.println(mainTable.getRows().size());
         System.out.println(mainTable.getValueFromCell(2,3));
-        System.out.println("--------------01----------");
         System.out.println(mainTable.findBySalary("61", "60000"));
 
     }

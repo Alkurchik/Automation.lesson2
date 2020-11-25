@@ -51,13 +51,10 @@ public class MainTable {
         {
             List<WebElement> cells = tableElement.findElements(By.xpath(String.format("//tr/td[4][text()>%s]/../td[6][@data-order>%s]", age, salary)));
             System.out.println("количество на странице: " + cells.size());
-
             for (WebElement cell : cells)
-            {
-                System.out.println(cell.getText());
-                System.out.println("-------------------");
-                driver.findElement(By.xpath("//a[@id=\"example_next\"]")).click();
-
+//            for (int i=0; i  < cells.size(); i++)
+                {
+                    System.out.println(cell.getText());
 
 //                int age = Integer.parseInt(cells.get(1).getText());
 //            if (cells.get(1).getText().equals(name))
@@ -66,8 +63,10 @@ public class MainTable {
 //                    System.out.println(cells.get(1).getText());
 //                    System.out.println(cells.get(2).getText());
 //                }
-            }
+                }
+            driver.findElement(By.xpath("//a[@id=\"example_next\"]")).click();
+            if (cells.size()==0) {break;}
         }
-        return false;
+        return true;
     }
 }
