@@ -8,8 +8,8 @@ import java.util.concurrent.TimeUnit;
 
 public class MainPage {
     private  WebDriver driver;
-
     public MainPage(WebDriver driver) {
+
         this.driver = driver;
     }
 

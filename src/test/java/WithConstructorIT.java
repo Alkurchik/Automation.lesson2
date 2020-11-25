@@ -1,19 +1,18 @@
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.concurrent.TimeUnit;
-
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-/**
- * Created by christian.draeger on 30.06.16.
- */
+
 @RunWith(Parameterized.class)
 public class WithConstructorIT {
     private WebDriver driver;
