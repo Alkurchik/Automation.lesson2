@@ -4,7 +4,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.concurrent.TimeUnit;
 
 
-public class MainPageTest {
+public class MainPageTests {
 
     private WebDriver driver;
     private MainPage mainPage;
@@ -25,12 +25,21 @@ public class MainPageTest {
         MainPage newMainPage = mainPage.clickSignIn();
         String heading = newMainPage.getHeadingText();
         Assert.assertEquals("Вход", heading);
+        mainPage.takeScreenshot();
     }
 
     @Test
-    public void logInTest(){
+    public void logInLogOutTest(){
         MainPage newMainPage = mainPage.logIn("seleniumtests@tut.by", "123456789zxcvbn");
         String success = newMainPage.getSuccessLogin();
+        mainPage.takeScreenshot();
+        try {
+            Thread.sleep(300);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        mainPage.clickLogOut();
+        mainPage.takeScreenshot();
         Assert.assertEquals("Selenium Test", success);
     }
 

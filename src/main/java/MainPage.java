@@ -1,9 +1,13 @@
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.io.FileHandler;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class MainPage {
@@ -22,6 +26,8 @@ public class MainPage {
     private By closePopUp = By.xpath("//*[@id=\"authorize\"]//span[@class=\"b-popup-close\"]");
     private By logged_users = By.xpath("//*[@id=\"authorize\"]//span[text()=\"Selenium Test\"]");
     private By heading = By.className("b-auth-title");
+    private By profileButton = By.className("uname");
+    private By logoutButton = By.xpath("//*[@id=\"authorize\"]//div[@class=\"b-popup-i\"]//a[@class=\"button wide auth__reg\"]");
 
 
     public MainPage clickSignIn(){
@@ -29,9 +35,26 @@ public class MainPage {
         return this;
     }
 
+    public MainPage clickLogOut(){
+        driver.findElement(profileButton).click();
+        driver.findElement(logoutButton).click();
+        return this;
+    }
+
     public MainPage typeUserEmail(String useremail){
         driver.findElement(userEmailField).sendKeys(useremail);
         return this;
+    }
+
+    public void takeScreenshot(){
+        TakesScreenshot scrShot =(TakesScreenshot)driver;
+        File SrcFile= scrShot.getScreenshotAs(OutputType.FILE);
+        File DestFile=new File("/Users/alex/IdeaProjects/issoft.lesson2/images/screenshot1.png");
+        try {
+            FileHandler.copy(SrcFile, DestFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public MainPage typeUserPassword(String password){

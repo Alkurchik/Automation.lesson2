@@ -7,9 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.concurrent.TimeUnit;
 
-public class Table {
+public class TableTests {
     static WebDriver driver;
-    //  //tr/td[4][text()>60]/../td[6][@data-order>90000]
 
     @Before
     public void setUp(){
@@ -23,10 +22,11 @@ public class Table {
     @Test
     public void findRow(){
         WebElement tableElement= driver.findElement(By.id("example"));
-        MainTable mainTable = new MainTable(tableElement, driver);
-        System.out.println(mainTable.getRows().size());
-        System.out.println(mainTable.getValueFromCell(2,3));
-        System.out.println(mainTable.findBySalary("61", "60000"));
+        TablePage mainTable = new TablePage(tableElement, driver);
+        System.out.println(mainTable.getRows().size()); // так мы можем узнать сколько строк на странице
+        System.out.println(mainTable.getValueFromCell(2,3)); // так мы можем получить конкретный
+        //элемент на странице по координатам
+        System.out.println(mainTable.findBySalary("61", "60000")); // так мы фильтруем таблицу по параметрам
 
     }
 

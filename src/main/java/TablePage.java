@@ -5,17 +5,21 @@ import org.openqa.selenium.WebElement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainTable {
+public class TablePage {
     private WebElement tableElement;
     private WebDriver driver;
 
-    public MainTable(WebElement tableElement, WebDriver driver){
+    private By tableId = By.id("example");
+    private By nextButtonId = By.id("example_next");
+
+
+    public TablePage(WebElement tableElement, WebDriver driver){
         this.tableElement = tableElement;
         this.driver = driver;
     }
 
     public List<WebElement> getRows(){
-        WebElement tableElement = driver.findElement(By.id("example"));
+        WebElement tableElement = driver.findElement(tableId);
         List<WebElement> rows = tableElement.findElements(By.xpath(".//tr"));
         rows.remove(0);
         return rows;
@@ -44,27 +48,27 @@ public class MainTable {
 
     }
 
+    public TablePage findElement(String item){
+        System.out.println(tableElement.findElement(By.xpath(item)).getText());
+        return this;
+    }
+
+
     public boolean findBySalary(String age, String salary)
     {
+
         List<WebElement> rows = tableElement.findElements(By.tagName("tr"));
         for (WebElement row : rows)
         {
-            List<WebElement> cells = tableElement.findElements(By.xpath(String.format("//tr/td[4][text()>%s]/../td[6][@data-order>%s]", age, salary)));
-            System.out.println("количество на странице: " + cells.size());
+            String item = String.format("//tr/td[4][text()>%s]/../td[6][@data-order>%s]", age, salary);
+            List<WebElement> cells = tableElement.findElements(By.xpath(item));
+            System.out.println("-------- количество на странице: " + cells.size());
             for (WebElement cell : cells)
-//            for (int i=0; i  < cells.size(); i++)
                 {
                     System.out.println(cell.getText());
-
-//                int age = Integer.parseInt(cells.get(1).getText());
-//            if (cells.get(1).getText().equals(name))
-//                if (age > getAge and salary <= getSalary) {
-//                    System.out.println(cells.get(0).getText());
-//                    System.out.println(cells.get(1).getText());
-//                    System.out.println(cells.get(2).getText());
-//                }
+                    //тут я хотел реализовать List<List<String>>
                 }
-            driver.findElement(By.xpath("//a[@id=\"example_next\"]")).click();
+            driver.findElement(nextButtonId).click();
             if (cells.size()==0) {break;}
         }
         return true;
