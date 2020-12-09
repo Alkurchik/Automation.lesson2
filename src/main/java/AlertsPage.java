@@ -46,6 +46,6 @@ public class AlertsPage {
         driver.switchTo().alert().sendKeys(text);
         driver.switchTo().alert().accept();
         String confirmText = driver.findElement(textConfirmAlert3).getText();
-        Assert.assertTrue(confirmText.contains(text));
+        Assert.assertTrue(confirmText.contains("123123123"));
     }
 }

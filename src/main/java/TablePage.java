@@ -60,6 +60,8 @@ public class TablePage {
         List<WebElement> rows = tableElement.findElements(By.tagName("tr"));
         for (WebElement row : rows)
         {
+            List<WebElement> td = row.findElements(By.xpath(".//td"));
+
             String item = String.format("//tr/td[4][text()>%s]/../td[6][@data-order>%s]", age, salary);
             List<WebElement> cells = tableElement.findElements(By.xpath(item));
             System.out.println("-------- количество на странице: " + cells.size());

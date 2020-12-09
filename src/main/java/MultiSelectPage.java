@@ -35,10 +35,9 @@ public class MultiSelectPage {
     ArrayList<Integer> integerArray = new ArrayList<>();
 
     private MultiSelectPage arrayGenerator(){
-        for (int i = 0; integerArray.size() < 3; i++) {
+        for (int i = 0; i < 3; i++) {
             double random = (Math.random() * options.size()-1);
             integerArray.add((int) random);
-            System.out.println(Arrays.toString(integerArray.toArray()));
         }
         return this;
     }
@@ -49,8 +48,6 @@ public class MultiSelectPage {
             String xPathV = String.format("//*[@id=\"multi-select\"]/option[%s]",integerArray.toArray()[i]);
             String getSelectOption = driver.findElement(By.xpath(xPathV)).getText();
             sel.selectByValue(getSelectOption);
-            System.out.println("Получаем контент выбраной опции 1: " + getSelectOption);
-            System.out.println("Получаем xPath выбраной опции: " + xPathV);
             driver.findElement(printAllButton).click();
             try {
                 Thread.sleep(2000);
@@ -58,13 +55,8 @@ public class MultiSelectPage {
                 e.printStackTrace();
             }
             String s = driver.findElement(getAllCssSelector).getText();
-            System.out.println("Получаем сообщение выбраной опции по getAll: " + s);
-            System.out.println("Получаем контент выбраной опции 2: " + getSelectOption);
             Assert.assertEquals(s.contains(getSelectOption), true );
         }
         return this;
     }
-
-
-
 }

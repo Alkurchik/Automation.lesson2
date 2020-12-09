@@ -47,7 +47,7 @@ public class MainPage {
     }
 
     public void takeScreenshot(){
-        TakesScreenshot scrShot =(TakesScreenshot)driver;
+        TakesScreenshot scrShot = (TakesScreenshot)driver;
         File SrcFile= scrShot.getScreenshotAs(OutputType.FILE);
         File DestFile=new File("/Users/alex/IdeaProjects/issoft.lesson2/images/screenshot1.png");
         try {

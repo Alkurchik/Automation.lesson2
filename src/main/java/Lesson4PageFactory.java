@@ -10,7 +10,6 @@ public class Lesson4PageFactory {
     private WebDriver driver;
 
     public Lesson4PageFactory(WebDriver driver) {
-
         this.driver = driver;
     }
 
@@ -28,7 +27,7 @@ public class Lesson4PageFactory {
     @FindBy(xpath = "//*[@id=\"authorize\"]//form[@class=\"auth-form\"]//input[@name=\"login\"]")
     private WebElement userEmailField;
 
-    @FindBy(xpath = "//*[@id=\"authorize\"]//form[@class=\"auth-form\"]//input[@name=\"password\"]")
+    @FindBy(xpath = "//*[@id='authorize']//form[@class=\"auth-form\"]//input[@name=\"password\"]")
     private WebElement passwordField;
 
     @FindBy(xpath = "//*[@id=\"authorize\"]//form[@class=\"auth-form\"]//input[@type=\"submit\"]")
@@ -105,6 +104,6 @@ public class Lesson4PageFactory {
             e.printStackTrace();
         }
         driver.navigate().refresh();
-        return new Lesson4PageFactory(driver);
+        return this;
     }
 }
