@@ -68,7 +68,7 @@ public class TablePage {
             for (WebElement cell : cells)
                 {
                     System.out.println(cell.getText());
-                    //тут я хотел реализовать List<List<String>>
+                    System.out.println(td.get(0));
                 }
             driver.findElement(nextButtonId).click();
             if (cells.size()==0) {break;}
